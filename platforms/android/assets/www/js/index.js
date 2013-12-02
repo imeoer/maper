@@ -28,16 +28,19 @@ var app = {
 		listeningElement.setAttribute('style', 'display:none;');
 		receivedElement.setAttribute('style', 'display:block;');
 
-		$('.received').text('GPS Loading');
+		// $('.received').text('GPS Loading');
 
 		console.log('Received Event: ' + id);
 	},
 
 	run: function() {
 		var that = this;
+		Toast.shortshow('GPS loading...');
 		that.runGPS(function(latitude, longitude) {
-			that.runMap(latitude, longitude);
+			Toast.shortshow('GPS load success');
+			that.runGoogleMap(latitude, longitude);
 		});
+		// that.runAccelerometer();
 	},
 
 	runGPS: function(callback) {
@@ -46,7 +49,7 @@ var app = {
 			var latitude = position.coords.latitude;
 			var longitude = position.coords.longitude;
 			callback(latitude, longitude);
-			$('.received').text(latitude + ', ' + longitude);
+			// $('.received').text(latitude + ', ' + longitude);
 		};
 
 		var onError = function(error) {
@@ -59,7 +62,8 @@ var app = {
 		});
 	},
 
-	runMap: function(latitude, longitude) {
+	runGoogleMap: function(latitude, longitude) {
+		Toast.shortshow('Google map request...');
 		var origin = new google.maps.LatLng(latitude, longitude);
 		var mapElem = $('#map')[0];
 		var map = new google.maps.Map(mapElem, {
@@ -84,12 +88,73 @@ var app = {
 				}
 				if (placeAry.length) {
 					$('.received').text(placeAry.join(', '));
+					Toast.shortshow('Google request finish');
+				} else {
+					Toast.shortshow('Google map no data');
 				}
 			}
 		}
 
 		service.nearbySearch(request, querySuccess);
-	}
+	},
+
+	runAccelerometer: function() {
+
+		var lastUpdateTime = null;
+		var lastPosition = null;
+
+		var UPTATE_INTERVAL_TIME = 500;
+
+		var onSuccess = function(position) {
+			var currentX = position.x.toFixed(1);
+			var currentY = position.y.toFixed(1);
+			var currentZ = position.z.toFixed(1);
+			var currentUpdateTime = position.timestamp;
+
+			if (!lastPosition) {
+				lastPosition = {
+					x: currentX,
+					y: currentY,
+					z: currentZ
+				};
+				lastUpdateTime = currentUpdateTime;
+			} else {
+				var timeInterval = currentUpdateTime - lastUpdateTime;
+				if (timeInterval > UPTATE_INTERVAL_TIME) {
+					lastUpdateTime = currentUpdateTime;
+					var lastX = lastPosition.x;
+					var lastY = lastPosition.y;
+					var lastZ = lastPosition.z;
+
+					var deltaX = currentX - lastX;
+					var deltaY = currentY - lastY;
+					var deltaZ = currentZ - lastZ;
+
+					lastPosition = {
+						x: currentX,
+						y: currentY,
+						z: currentZ
+					};
+
+					var speed = Math.sqrt(
+						deltaX * deltaX +
+						deltaY * deltaY +
+						deltaZ * deltaZ) / timeInterval * 10000;
+
+					$('.received').text(speed);
+				}
+			}
+		};
+
+		var onError = function() {
+			alert('Accelerometer failed');
+		};
+
+		navigator.accelerometer.watchAcceleration(onSuccess, onError, {
+			frequency: 100
+		});
+
+	},
 };
 
 app.initialize();

@@ -14,6 +14,12 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
     </feature>
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+    </feature>
+    <feature name="ToastPlugin">
+        <param name="android-package" value="org.apache.cordova.toast.ToastPlugin" />
+    </feature>
     <access origin="http://127.0.0.1*" />
     <access origin="*.google.com" />
     <access origin="*.googleapis.com" />

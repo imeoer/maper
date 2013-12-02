@@ -27,11 +27,15 @@
 /home/imeoer/maper/platforms/android/assets/www/spec \
 /home/imeoer/maper/platforms/android/assets/www/css/index.css \
 /home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.geolocation \
+/home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.device-motion \
 /home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www \
 /home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/PositionError.js \
 /home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/geolocation.js \
 /home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/Coordinates.js \
 /home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/Position.js \
+/home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.device-motion/www \
+/home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.device-motion/www/Acceleration.js \
+/home/imeoer/maper/platforms/android/assets/www/plugins/org.apache.cordova.device-motion/www/accelerometer.js \
 /home/imeoer/maper/platforms/android/assets/www/res/screen \
 /home/imeoer/maper/platforms/android/assets/www/res/icon \
 /home/imeoer/maper/platforms/android/assets/www/res/screen/ios \
@@ -94,8 +98,11 @@
 /home/imeoer/maper/platforms/android/assets/www/res/icon/android/icon-96-xhdpi.png \
 /home/imeoer/maper/platforms/android/assets/www/res/icon/bada/icon-128.png \
 /home/imeoer/maper/platforms/android/assets/www/img/logo.png \
+/home/imeoer/maper/platforms/android/assets/www/js/toast.js \
 /home/imeoer/maper/platforms/android/assets/www/js/index.js \
 /home/imeoer/maper/platforms/android/assets/www/js/jquery-2.0.3.min.js \
+/home/imeoer/maper/platforms/android/assets/www/js/google-map-v3.js \
+/home/imeoer/maper/platforms/android/assets/www/js/baidu-map.js \
 /home/imeoer/maper/platforms/android/assets/www/js/jquery.mobile-1.3.2.min.js \
 /home/imeoer/maper/platforms/android/assets/www/spec/helper.js \
 /home/imeoer/maper/platforms/android/assets/www/spec/lib \
