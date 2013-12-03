@@ -40,7 +40,7 @@ var app = {
 			Toast.shortshow('GPS load success');
 			that.runGoogleMap(latitude, longitude);
 		});
-		// that.runAccelerometer();
+		that.runAccelerometer();
 	},
 
 	runGPS: function(callback) {
@@ -79,6 +79,19 @@ var app = {
 		infowindow = new google.maps.InfoWindow();
 		var service = new google.maps.places.PlacesService(map);
 
+		var getPlaceDetail = function(reference) {
+
+			service.getDetails({
+				reference: reference
+			}, function(place, status) {
+				if (status == google.maps.places.PlacesServiceStatus.OK) {
+					console.log(JSON.stringify(place));
+					Toast.shortshow('Google place detail finish');
+				}
+			});
+			
+		};
+
 		var querySuccess = function(results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
 				var placeAry = [];
@@ -89,11 +102,12 @@ var app = {
 				if (placeAry.length) {
 					$('.received').text(placeAry.join(', '));
 					Toast.shortshow('Google request finish');
+					getPlaceDetail(results[0].reference);
 				} else {
 					Toast.shortshow('Google map no data');
 				}
 			}
-		}
+		};
 
 		service.nearbySearch(request, querySuccess);
 	},
@@ -104,6 +118,76 @@ var app = {
 		var lastPosition = null;
 
 		var UPTATE_INTERVAL_TIME = 500;
+
+		// init step counter
+		var counter = 0;
+
+		var h = 480;
+		var mYOffset = h * 0.5;
+		var STANDARD_GRAVITY = 9.80665;
+		var MAGNETIC_FIELD_EARTH_MAX = 60.0;
+		var mScale = [0, 0];
+		mScale[0] = - (h * 0.5 * (1.0 / (STANDARD_GRAVITY * 2)));
+		mScale[1] = - (h * 0.5 * (1.0 / (MAGNETIC_FIELD_EARTH_MAX)));
+		var mLimit = 10.00; // 1.97  2.96  4.44  6.66  10.00  15.00  22.50  33.75  50.62
+		var mLastValues = [0, 0, 0, 0, 0, 0];
+		var mLastDirections = [0, 0, 0, 0, 0, 0];
+		var mLastDiff = [0, 0, 0, 0, 0, 0];
+		var mLastExtremes = [
+			[0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0]
+		];
+		var mLastMatch = -1;
+		// init step counter
+
+		var calcStep = function(position) {
+
+			try {
+
+				var vSum = 0;
+				var currentPosAry = [position.x, position.y, position.z];
+				for (var i = 0; i < 3; i++) {
+					var v = mYOffset + currentPosAry[i] * mScale[1];
+					vSum += v;
+				}
+				var k = 0;
+				var v = vSum / 3;
+				
+				var direction = (v > mLastValues[k] ? 1 : (v < mLastValues[k] ? -1 : 0));
+				if (direction == - mLastDirections[k]) {
+					// Direction changed
+					var extType = (direction > 0 ? 0 : 1); // minumum or maximum?
+					mLastExtremes[extType][k] = mLastValues[k];
+					var diff = Math.abs(mLastExtremes[extType][k] - mLastExtremes[1 - extType][k]);
+
+					if (diff > mLimit) {
+						
+						var isAlmostAsLargeAsPrevious = diff > (mLastDiff[k]*2/3);
+						var isPreviousLargeEnough = mLastDiff[k] > (diff/3);
+						var isNotContra = (mLastMatch != 1 - extType);
+						
+						if (isAlmostAsLargeAsPrevious && isPreviousLargeEnough && isNotContra) {
+							// one step
+							Toast.shortshow(String(++counter));
+							mLastMatch = extType;
+						}
+						else {
+							mLastMatch = -1;
+						}
+					}
+					mLastDiff[k] = diff;
+				}
+				mLastDirections[k] = direction;
+				mLastValues[k] = v;
+			} catch(err) {
+				Toast.shortshow(err.message);
+			}
+
+		};
 
 		var onSuccess = function(position) {
 			var currentX = position.x.toFixed(1);
@@ -150,9 +234,11 @@ var app = {
 			alert('Accelerometer failed');
 		};
 
-		navigator.accelerometer.watchAcceleration(onSuccess, onError, {
+		navigator.accelerometer.watchAcceleration(calcStep, onError, {
 			frequency: 100
 		});
+
+		Toast.shortshow('Step counter start...');
 
 	},
 };
