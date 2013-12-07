@@ -426,3 +426,13 @@ body {
 	font-size: 50px;
 	margin-top: 150px;
 }
+
+/*  */
+.side-switch {
+	float: right;
+	width: 32px;
+	height: 32px;
+	background: url(../img/edit.png);
+	margin-right: 70px;
+	margin-top: 4px;
+}

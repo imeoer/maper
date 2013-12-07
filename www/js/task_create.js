@@ -54,5 +54,9 @@ var task_create = {
 		$('#main1 .navi').click(function () {
 			task_create.showPanel('navi');
 		});
+
+		$('#main1 .head').click(function () {
+			task_create.showPanel('game');
+		});
 	}
 };
