@@ -13,7 +13,17 @@
 	border: 1px #c7c7c7 solid;
 	color: #3b3b3b;
 	font-size: 30px;
-
+}
+.i-txt.ui-input-text.ui-body-c {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	border: 1px #c7c7c7 solid;
+	color: #3b3b3b;
+	font-size: 30px;
+	width: 549px;
+	margin-top: 40px;
+	margin-left: 59px;
 }
 .input:focus {
 	border: 1px #00baff solid;
@@ -43,7 +53,7 @@ body {
 	top: 0;
 }
 
-#app, #main, #main1, #content, #task, #navi {
+#app, #main, #main1, #content, #task, #navi, #progress {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -66,7 +76,7 @@ body {
 	width: 500px;
 }
 
-#content, #task, #navi {
+#content, #task, #navi, #progress {
 	display: none;
 	background-color: #fff;
 	z-index: 1;
@@ -80,6 +90,10 @@ body {
 
 #navi {
 	z-index: 3;
+}
+
+#progress {
+	z-index: 4;
 }
 
 /* header */
@@ -351,7 +365,7 @@ body {
 	color: #fff;
 	z-index: 1;
 	font-size: 20px;
-	margin-top: 338px;
+	margin-top: 370px;
 }
 
 #jump {
@@ -363,4 +377,48 @@ body {
 	text-align: center;
 	line-height: 183px;
 	color: #fff;
+}
+
+.dw-i {
+	font-size: 35px;
+}
+
+.dwb-e, .dwb-c {
+	font-size: 35px;
+}
+
+.task-type-selector {
+	display: none;
+}
+
+/* progress */
+#progress {
+	padding-top: 60px;
+}
+#progress .head {
+	padding: 10px;
+	padding-left: 30px;
+	padding-top: 15px;
+	border-left: 10px #0066ff solid;
+	color: #6b6b6b;
+	font-weight: bold;
+	margin-bottom: 36px;
+}
+#progress-main {
+	background: url(../img/circle3.png);
+	width: 446px;
+	height: 446px;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+	line-height: 440px;
+	color: #fff;
+	font-size: 70px;
+}
+#progress-info {
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+	font-size: 50px;
+	margin-top: 150px;
 }

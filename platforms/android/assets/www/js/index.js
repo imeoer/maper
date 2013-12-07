@@ -13,10 +13,12 @@ var app = {
 			$('#content').addClass('animation');
 			$('#task').addClass('animation');
 			$('#navi').addClass('animation');
+			$('#progress').addClass('animation');
 		}).on('swipeleft', function (event) {
 			$('#content').removeClass('animation');
 			$('#task').removeClass('animation');
 			$('#navi').removeClass('animation');
+			$('#progress').removeClass('animation');
 		});
 		$('#logo').addClass('animation1');
 
@@ -26,12 +28,15 @@ var app = {
 			$('#content').show();
 			$('#task').show();
 			$('#navi').show();
+			$('#progress').show();
 		});
 
 		//global
 		$('.input').on('focus', function () {
-			$(this).addClass('input-adjust');
-			$(this).focus();
+			if (!$(this).hasClass('picker')) {
+				$(this).addClass('input-adjust');
+				$(this).focus();
+			}
 		}).on('blur', function () {
 			$(this).removeClass('input-adjust');
 			$(this).blur();
@@ -39,27 +44,19 @@ var app = {
 		$('body').click(function () {
 			$('body').removeClass('input-adjust');
 		});
+
+		task_create.init();
 	},
 
 	onDeviceReady: function() {
 		$(function() {
 			// app.receivedEvent('deviceready');
 			try {
-				// app.run();
 				algorithm.jump();
 				algorithm.navigition({
 					latitude: 39.958046,
 					longitude: 116.358368
 				});
-				// var onPositionUpdate = function (postion) {
-				// 	alert(JSON.stringify(postion));
-				// };
-				// var onError = function (error) {
-				// 	alert(JSON.stringify(error));
-				// };
-				// navigator.geolocation.getCurrentPosition(onPositionUpdate, onError, {
-				// 	maximumAge: 3000, timeout: 30000, enableHighAccuracy: false
-				// });
 			}
 			catch(error) {
 				alert(error.message);

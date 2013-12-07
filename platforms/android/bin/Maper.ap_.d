@@ -27,9 +27,13 @@ C:\Users\iMeoer\maper\platforms\android\assets\www\res \
 C:\Users\iMeoer\maper\platforms\android\assets\www\spec \
 C:\Users\iMeoer\maper\platforms\android\assets\www\spec.html \
 C:\Users\iMeoer\maper\platforms\android\assets\www\css\index.css \
+C:\Users\iMeoer\maper\platforms\android\assets\www\css\mobiscroll.custom-2.6.2.min.css \
+C:\Users\iMeoer\maper\platforms\android\assets\www\css\wp_icons.png \
+C:\Users\iMeoer\maper\platforms\android\assets\www\css\wp_icons_light.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\bg.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\circle1.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\circle2.png \
+C:\Users\iMeoer\maper\platforms\android\assets\www\img\circle3.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\head.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\header.png \
@@ -42,6 +46,7 @@ C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\4.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\5.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\circle1.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\circle2.png \
+C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\circle3.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\logo.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\main_bg.png \
 C:\Users\iMeoer\maper\platforms\android\assets\www\img\design\sidebar \
@@ -91,6 +96,8 @@ C:\Users\iMeoer\maper\platforms\android\assets\www\js\index.js \
 C:\Users\iMeoer\maper\platforms\android\assets\www\js\jquery-2.0.3.min.js \
 C:\Users\iMeoer\maper\platforms\android\assets\www\js\jquery.mobile-1.3.2.min.js \
 C:\Users\iMeoer\maper\platforms\android\assets\www\js\map_api.js \
+C:\Users\iMeoer\maper\platforms\android\assets\www\js\mobiscroll.custom-2.6.2.min.js \
+C:\Users\iMeoer\maper\platforms\android\assets\www\js\task_create.js \
 C:\Users\iMeoer\maper\platforms\android\assets\www\js\test_api.js \
 C:\Users\iMeoer\maper\platforms\android\assets\www\js\toast.js \
 C:\Users\iMeoer\maper\platforms\android\assets\www\plugins\org.apache.cordova.device-motion \
