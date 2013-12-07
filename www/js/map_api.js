@@ -43,9 +43,9 @@ var mapapi = {
         success: function(data, textStatus, HRX){
             if (data){
             	if (data.error){
-            		callback(data.error, null);
+            		return callback(data.error, null);
             	}else {
-            		callback(null, data);
+            		return callback(null, data);
             	}
             }else {
             	errorHandler("102");
@@ -69,9 +69,9 @@ var mapapi = {
 	        success: function(data, textStatus, HRX){
 	            if (data){
 	            	if (data.error){
-            			callback(data.error, null);
+            			return callback(data.error, null);
             		}else {
-            			callback(null, data);
+            			return callback(null, data);
             		}
 	            }else {
 	            	errorHandler("102");
@@ -103,9 +103,9 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-            			callback(data.error, null);
+            			return callback(data.error, null);
             		}else {
-            			callback(null, data);
+            			return callback(null, data);
             		}
 	            }else {
 	            	errorHandler("103");
@@ -133,9 +133,9 @@ var mapapi = {
 	        success: function(data){//{'create':[], 'join':[]}
 	            if (data){
 	            	if (data.error){
-            			callback(data.error, null);
+            			return callback(data.error, null);
             		}else {
-            			callback(null, data);
+            			return callback(null, data);
             		}
 	            }else {
 	            	errorHandler("104");
@@ -172,9 +172,9 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-            			callback(data.error, null);
+            			return callback(data.error, null);
             		}else {
-            			callback(null, data);
+            			return callback(null, data);
             		}
 	            }else {
 	            	errorHandler("105");
@@ -201,9 +201,9 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-            			callback(data.error, null);
+            			return callback(data.error, null);
             		}else {
-            			callback(null, data);
+            			return callback(null, data);
             		}
 	            }else {
 	            	errorHandler("106");

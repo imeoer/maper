@@ -17,15 +17,19 @@ var app = {
 			$('#content').removeClass('animation');
 			$('#task').removeClass('animation');
 			$('#navi').removeClass('animation');
+			user.get_profile();
+			user.get_user_tasks();
 		});
 		$('#logo').addClass('animation1');
 
 		$('#first-btn').click(function () {
 			$('#main').hide();
+			$('#create-tasks').hide();
 			$('#main1').show();
 			$('#content').show();
 			$('#task').show();
 			$('#navi').show();
+			$('#join-tasks').show();
 		});
 
 		//global
