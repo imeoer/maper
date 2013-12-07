@@ -14,33 +14,45 @@ var user = {
     // 获取用户的任务
     get_user_tasks: function () {
         mapapi.getTasks(function (err, data) {
-            if (data.create.length) {
-                $('.info').text('1个游戏，' + data.join.length + '个任务')
+            if (data.create.create_tasks.length) {
+                $('.info').text('1个游戏，' + data.join.join_tasks.length + '个任务')
             } else {
-                $('.info').text('0个游戏，' + data.join.length + '个任务')
+                $('.info').text('0个游戏，' + data.join.join_tasks.length + '个任务')
             }
             var create_tasks = '';
             var join_tasks = '';
-            for (var i = 0; i < data.create.length; i++) {
+            for (var i = 0; i < data.create.create_tasks.length; i++) {
                 create_tasks += '<li class="createtask"><div>·</div>';
-                create_tasks += data.create[i].task_name + '</li>';
+                create_tasks += data.create.create_tasks[i].task_name + '</li>';
             }
             $('#create-tasks').html(create_tasks);
-            for (var i = 0; i < data.join.length; i++) {
-                join_tasks += '<li class="jointask"><div>·</div>' + data.join[i].task_name + '</li>'; 
+            for (var i = 0; i < data.join.join_tasks.length; i++) {
+                join_tasks += '<li class="jointask"><div>·</div>' + data.join.join_tasks[i].task_name + '</li>'; 
             }
             $('#join-tasks').html(join_tasks);
+            $('#progress-info').text('我的进度');
+            $('#progress-main').text(data.join.player.progress);
             $('.createtask').each(function (index, value) {
                 $(value).bind('click', function () {
-                    alert(data.create[index]);
-                    // TODO for imeoer
+                    $('.createtask').removeClass('select');
+                    $(this).addClass('select');
+                    task.get_task_info(data.create.create_tasks[index]);
                 });
             });
             $('.jointask').each(function (index, value) {
                 $(value).bind('click', function () {
-                    alert(data.join[index]);
-                    // TODO for imeoer
+                    $('.jointask').removeClass('select');
+                    $(this).addClass('select');
+                    task.get_task_info(data.join.join_tasks[index]);
                 });
+            });
+            $('#create-switch').bind('click', function () {
+                $('#progress-info').text('玩家 ' + data.create.player.username + ' 进度');
+                $('#progress-main').text(data.create.player.progress);
+            });
+            $('#join-switch').bind('click', function () {
+                $('#progress-info').text('我的进度');
+                $('#progress-main').text(data.join.player.progress);
             });
         });
     }
