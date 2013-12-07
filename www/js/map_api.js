@@ -35,7 +35,7 @@ var mapapi = {
         url: baseUri+'token',
         dataType:'json',
         data: {'uuid': deviceid},
-        timeout: 5000,
+        timeout: 50000,
         cache: true,
         async: true,
         success: function(data, textStatus, HRX){
@@ -56,16 +56,16 @@ var mapapi = {
 	},
 
 	regester : function(username){
+		console.log(username+":"+deviceid + ":"+baseUri+'users/register');
 		$.ajax({
-	        type:'POST',
+	        type:"POST",
 	        url: baseUri+'users/register',
 	        dataType:'json',
-	        data: {'uuid': deviceid, "username": username},
-	        timeout: 5000,
+	        data: {"uuid": deviceid, "username": username},
+	        timeout: 50000,
 	        cache: true,
 	        async: true,
-	        success: function(data){
-	        	console.log(data)
+	        success: function(data, textStatus, HRX){
 	            if (data){
 	            	if (data.error){
 	            		errorHandler("900", data.error);
@@ -76,7 +76,7 @@ var mapapi = {
 	            	errorHandler("102");
 	            }
 	        },
-	    	error: function(err){
+	    	error: function(err, ajaxOptions, thrownError){
 	    			errorHandler("102");
 	    		}
 	    	});
@@ -119,7 +119,8 @@ var mapapi = {
 	getTasks : function(username, task){
 		$.ajax({
 	        type:'GET',
-	        url: baseUri + username + "/" + task,
+	        //url: baseUri + username + "/" + task,
+	        url: baseUri + "users/tasks",
 	        dataType:'json',
 	        data: "",
 	        timeout: 5000,
@@ -216,7 +217,6 @@ var mapapi = {
 };
 
 function succHandler(code, data, msg){
-	console.log(data)
 	switch (code){
 		case "201" :
 			break; 
@@ -236,7 +236,6 @@ function succHandler(code, data, msg){
 }
 
 function errorHandler(code, msg){
-	console.log(msg)
 	switch (code) {
 		case "101" :
 			break
