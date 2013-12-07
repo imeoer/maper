@@ -2,7 +2,9 @@
 ** map js api
 ***/
 
-var deviceid = device.uuid;
+//var deviceid = device.uuid;
+
+var deviceid = 12345678;
 
 var baseUri = "http://10.10.0.103:3000/v1/";
 
@@ -29,21 +31,21 @@ var succCode = {
 var header = "";
 
 var mapapi = {
-	getUserName : function(){
+	getUserName : function(callback){
 		$.ajax({
         type:'POST',
         url: baseUri+'token',
         dataType:'json',
         data: {'uuid': deviceid},
-        timeout: 5000,
+        timeout: 50000,
         cache: true,
         async: true,
         success: function(data, textStatus, HRX){
             if (data){
             	if (data.error){
-            		errorHandler("900", data.error);
+            		return callback(data.error, null);
             	}else {
-            		succHandler("201", data, HRX);
+            		return callback(null, data);
             	}
             }else {
             	errorHandler("102");
@@ -55,34 +57,33 @@ var mapapi = {
     	});
 	},
 
-	regester : function(username){
+	regester : function(username, callback){
 		$.ajax({
-	        type:'POST',
+	        type:"POST",
 	        url: baseUri+'users/register',
 	        dataType:'json',
-	        data: {'uuid': deviceid, "username": username},
-	        timeout: 5000,
+	        data: {"uuid": deviceid, "username": username},
+	        timeout: 50000,
 	        cache: true,
 	        async: true,
-	        success: function(data){
-	        	console.log(data)
+	        success: function(data, textStatus, HRX){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("202", data, HRX);
-	            	}
+            			return callback(data.error, null);
+            		}else {
+            			return callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("102");
 	            }
 	        },
-	    	error: function(err){
+	    	error: function(err, ajaxOptions, thrownError){
 	    			errorHandler("102");
 	    		}
 	    	});
 	},
 	//key Authorization value "bearer uuid"
-	createGame : function(gameName, description, reward, username){
+	createGame : function(gameName, description, reward, username, callback){
 		var param = {"game_name" : gameName,
 					
 					"description": description,
@@ -102,10 +103,10 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("203", data);
-	            	}
+            			return callback(data.error, null);
+            		}else {
+            			return callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("103");
 	            }
@@ -116,10 +117,11 @@ var mapapi = {
 	    	});
 	},
 
-	getTasks : function(username, task){
+	getTasks : function(callback){
 		$.ajax({
 	        type:'GET',
-	        url: baseUri + username + "/" + task,
+	        //url: baseUri + username + "/" + task,
+	        url: baseUri + "users/tasks",
 	        dataType:'json',
 	        data: "",
 	        timeout: 5000,
@@ -131,10 +133,10 @@ var mapapi = {
 	        success: function(data){//{'create':[], 'join':[]}
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("204", data);
-	            	}
+            			return callback(data.error, null);
+            		}else {
+            			return callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("104");
 	            }
@@ -145,7 +147,7 @@ var mapapi = {
 	    	});
 	},
 
-	createTask : function(game_name, task_name, description, reward, point, rule, type, end_time){
+	createTask : function(game_name, task_name, description, reward, point, rule, type, end_time, callback){
 		var params = {
 			"game_name":game_name,
 			"task_name":task_name,
@@ -170,10 +172,10 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("205", data);
-	            	}
+            			return callback(data.error, null);
+            		}else {
+            			return callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("105");
 	            }
@@ -184,7 +186,7 @@ var mapapi = {
 	    	});
 	},
 
-	finishTask : function(task_name){
+	finishTask : function(task_name, callback){
 		$.ajax({
 	        type:'PUT',
 	        url: baseUri+'tasks/' + task_name,
@@ -199,10 +201,10 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("206", data);
-	            	}
+            			return callback(data.error, null);
+            		}else {
+            			return callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("106");
 	            }
@@ -216,7 +218,6 @@ var mapapi = {
 };
 
 function succHandler(code, data, msg){
-	console.log(data)
 	switch (code){
 		case "201" :
 			break; 
@@ -232,11 +233,11 @@ function succHandler(code, data, msg){
 			break;
 		default:
 			break;
+		return;
 	}
 }
 
 function errorHandler(code, msg){
-	console.log(msg)
 	switch (code) {
 		case "101" :
 			break
@@ -252,5 +253,6 @@ function errorHandler(code, msg){
 			break;
 		default:
 			break;
+		return;
 	}
 }

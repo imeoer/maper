@@ -24,11 +24,13 @@ var app = {
 
 		$('#first-btn').click(function () {
 			$('#main').hide();
+			$('#create').hide();
 			$('#main1').show();
 			$('#content').show();
 			$('#task').show();
 			$('#navi').show();
 			$('#progress').show();
+			$('#join').show();
 		});
 
 		//global
@@ -44,8 +46,19 @@ var app = {
 		$('body').click(function () {
 			$('body').removeClass('input-adjust');
 		});
-
 		task_create.init();
+		$(document).ready(function () {
+			user.get_profile();
+			user.get_user_tasks();
+			$('#create-switch').bind('click', function () {
+				$('#create').show();
+				$('#join').hide();
+			});
+			$('#join-switch').bind('click', function () {
+				$('#join').show();
+				$('#create').hide();
+			});
+		});
 	},
 
 	onDeviceReady: function() {

@@ -55,20 +55,25 @@
 			<div id="main1">
 				<div class="header">
 					<div class="head"></div>
-					<div class="name">iMeoer</div>
-					<div class="info">1个游戏，3个任务</div>
+					<div class="name"></div>
+					<div class="info"></div>
 				</div>
-				<div class="container">
-					<div class="head">我的游戏</div>
-					<ul class="task-list">
-						<li class="select"><div>·</div>8点起床去洗漱</li>
-						<li><div>·</div>8点起床去洗漱</li>
-						<li><div>·</div>8点起床去洗漱</li>
-						<li><div>·</div>8点起床去洗漱</li>
+                <!-- 我参加的游戏 -->
+				<div id="join" class="container">
+					<div class="head">我的游戏<div id="create-switch">点我</div></div>
+					<ul id="join-tasks" class="task-list">
 					</ul>
 					<div class="head navi">任务导航</div>
 					<div class="head exit">退出应用</div>
 				</div>
+                <!-- 我创建的游戏 -->
+                <div id="create" class="container">
+                    <div class="head">创建游戏<div id="join-switch">点我</div></div>
+                    <ul id="create-tasks" class="task-list">
+                    </ul>
+                    <div class="head navi">任务导航</div>
+                    <div class="head exit">退出应用</div>
+                </div>
 			</div>
 		</div>
 		<script type="text/javascript" src="phonegap.js"></script>
@@ -79,8 +84,9 @@
 		<script type="text/javascript" src="js/toast.js"></script>
 		<script type="text/javascript" src="js/algorithm.js"></script>
 		<script type="text/javascript" src="js/mobiscroll.custom-2.6.2.min.js"></script>
-		
 		<script type="text/javascript" src="js/task_create.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/map_api.js"></script>
+        <script type="text/javascript" src="js/user.js"></script>
 	</body>
 </html>
