@@ -3,7 +3,9 @@
 ***/
 
 var deviceid = device.uuid;
-var bathUri = "http://10.10.0.103:3000/v1/";
+
+var baseUri = "http://10.10.0.103:3000/v1/";
+
 var errorCode = {
 	"101": "Network error",
 	"102": "User not exsit",
@@ -24,8 +26,6 @@ var succCode = {
 	"900": "Other"
 };
 
-var $testTarget = $("#testTarget");
-
 var mapapi = {
 	getUserName : function(){
 		$.ajax({
@@ -44,11 +44,11 @@ var mapapi = {
             		succHandler("201", data);
             	}
             }else {
-            	errorHanlder("102");
+            	errorHandler("102");
             }
         },
     	error: function(err){
-    			errorHanlder("102");
+    			errorHandler("102");
     		}
     	});
 	},
@@ -63,6 +63,7 @@ var mapapi = {
 	        cache: true,
 	        async: true,
 	        success: function(data){
+	        	console.log(data)
 	            if (data){
 	            	if (data.error){
 	            		errorHandler("900", data.error);
@@ -70,11 +71,11 @@ var mapapi = {
 	            		succHandler("202", data);
 	            	}
 	            }else {
-	            	errorHanlder("102");
+	            	errorHandler("102");
 	            }
 	        },
 	    	error: function(err){
-	    			errorHanlder("102");
+	    			errorHandler("102");
 	    		}
 	    	});
 	},
@@ -101,11 +102,11 @@ var mapapi = {
 	            		succHandler("203", data);
 	            	}
 	            }else {
-	            	errorHanlder("103");
+	            	errorHandler("103");
 	            }
 	        },
 	    	error: function(err){
-	    			errorHanlder("102");
+	    			errorHandler("102");
 	    		}
 	    	});
 	},
@@ -127,11 +128,11 @@ var mapapi = {
 	            		succHandler("204", data);
 	            	}
 	            }else {
-	            	errorHanlder("104");
+	            	errorHandler("104");
 	            }
 	        },
 	    	error: function(err){
-	    			errorHanlder("102");
+	    			errorHandler("102");
 	    		}
 	    	});
 	},
@@ -163,11 +164,11 @@ var mapapi = {
 	            		succHandler("205", data);
 	            	}
 	            }else {
-	            	errorHanlder("105");
+	            	errorHandler("105");
 	            }
 	        },
 	    	error: function(err){
-	    			errorHanlder("102");
+	    			errorHandler("102");
 	    		}
 	    	});
 	},
@@ -189,11 +190,11 @@ var mapapi = {
 	            		succHandler("206", data);
 	            	}
 	            }else {
-	            	errorHanlder("106");
+	            	errorHandler("106");
 	            }
 	        },
 	    	error: function(err){
-	    			errorHanlder("102");
+	    			errorHandler("102");
 	    		}
 	    	});
 	}
@@ -201,7 +202,7 @@ var mapapi = {
 };
 
 function succHandler(code, data, msg){
-	$testTarget.val(data);
+	console.log(data)
 	switch (code){
 		case "201" :
 			break; 
@@ -221,7 +222,7 @@ function succHandler(code, data, msg){
 }
 
 function errorHandler(code, msg){
-	$testTarget.val(data);
+	console.log(msg)
 	switch (code) {
 		case "101" :
 			break
