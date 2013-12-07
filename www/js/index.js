@@ -61,6 +61,7 @@ var app = {
 					latitude: 39.958046,
 					longitude: 116.358368
 				});
+				cameraSet.bindCamera();
 			}
 			catch(error) {
 				alert(error.message);
