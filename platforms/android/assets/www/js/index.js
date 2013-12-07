@@ -20,7 +20,6 @@ var app = {
 		});
 		$('#logo').addClass('animation1');
 
-		// first
 		$('#first-btn').click(function () {
 			$('#main').hide();
 			$('#main1').show();
@@ -45,12 +44,26 @@ var app = {
 	onDeviceReady: function() {
 		$(function() {
 			// app.receivedEvent('deviceready');
-			// try {
-			// 	app.run();
-			// }
-			// catch(error) {
-			// 	alert(error.message);
-			// }
+			try {
+				// app.run();
+				algorithm.jump();
+				algorithm.navigition({
+					latitude: 39.958046,
+					longitude: 116.358368
+				});
+				// var onPositionUpdate = function (postion) {
+				// 	alert(JSON.stringify(postion));
+				// };
+				// var onError = function (error) {
+				// 	alert(JSON.stringify(error));
+				// };
+				// navigator.geolocation.getCurrentPosition(onPositionUpdate, onError, {
+				// 	maximumAge: 3000, timeout: 30000, enableHighAccuracy: false
+				// });
+			}
+			catch(error) {
+				alert(error.message);
+			}
 		});
 	}
 };

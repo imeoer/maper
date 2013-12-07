@@ -144,6 +144,7 @@ body {
 	margin-top: 60px;
 	text-align: center;
 	border: 1px #fff solid;
+	display: none;
 }
 
 /* sidebar */
@@ -334,6 +335,32 @@ body {
 	width: 446px;
 	height: 446px;
 	margin: 0 auto;
-	margin-top: 200px;
+	margin-top: 170px;
 	-webkit-transform: rotate(60deg);
+	text-align: center;
+}
+
+#compass-text {
+	margin: 0 auto;
+	margin-top: 170px;
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	text-align: center;
+	color: #fff;
+	z-index: 1;
+	font-size: 20px;
+	margin-top: 338px;
+}
+
+#jump {
+	background: url(../img/circle1.png);
+	width: 178px;
+	height: 178px;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+	line-height: 183px;
+	color: #fff;
 }

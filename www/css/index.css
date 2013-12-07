@@ -144,6 +144,7 @@ body {
 	margin-top: 60px;
 	text-align: center;
 	border: 1px #fff solid;
+	display: none;
 }
 
 /* sidebar */
@@ -349,7 +350,8 @@ body {
 	text-align: center;
 	color: #fff;
 	z-index: 1;
-	margin-top: 338px;
+	font-size: 20px;
+	margin-top: 370px;
 }
 
 #jump {

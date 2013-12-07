@@ -9,25 +9,40 @@ var algorithm = {
     var destinationBearing;
     var currentHeading;
     var calculate_distance = function (position) {
-      var dLat = (task.latitude - position.coords.latitude).toRad();
-      var dLon = (task.longtitude - position.coords.longitude).toRad();
-      var lat1 = taskt.latitude.toRad();
-      var lat2 = position.coords.latitude.toRad();
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      var d = R * c;
+      try {
+        var dLat = (task.latitude - position.coords.latitude).toRad();
+        var dLon = (task.longitude - position.coords.longitude).toRad();
+        var lat1 = task.latitude.toRad();
+        var lat2 = position.coords.latitude.toRad();
+        // alert(task.longitude + ', ' + position.coords.longitude);
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        // alert(d);
 
-      var y = Math.sin(dLon) * Math.cos(lat2);
-      var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
-      destinationBearing = Math.atan2(y, x).toDeg();
+        var y = Math.sin(dLon) * Math.cos(lat2);
+        var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+        // alert(y + ', ' + x);
+        destinationBearing = Math.atan2(y, x).toDeg();
+
+        $('#compass-text').text((d * 1000).toFixed(4) + '米');
+      } catch (err) {
+        alert(err.message);
+      }
       return d;
     };
-    var onPositionUpdate = function (postion) {
+    var onPositionUpdate = function (position) {
+      // alert(JSON.stringify(position));
       calculate_distance(position);
     };
-    var calculate_angle = function (heading) {
-      diff = destinationBearing - currentHeading;
+    var calculate_angle = function () {
+      if (destinationBearing !== undefined) {
+        diff = destinationBearing - currentHeading;
+        var resultDeg = diff + 180;
+        $('#compass').css('-webkit-transform', 'rotate(' + resultDeg + 'deg)');
+        // alert(destinationBearing + ', ' + currentHeading);
+      }
       //TODO
     };
     var onCompassUpdate = function (heading) {
@@ -43,8 +58,21 @@ var algorithm = {
     if (compassWatchId) {
       navigator.compass.clearWatch(compassWatchId);
     }
+
+    if (typeof(Number.prototype.toRad) === "undefined") {
+      Number.prototype.toRad = function() {
+        return this * Math.PI / 180;
+      }
+    }
+
+    if (typeof(Number.prototype.toDeg) === "undefined") {
+      Number.prototype.toDeg = function() {
+        return this * 180 / Math.PI;
+      }
+    }
+
     locationWatchId = navigator.geolocation.watchPosition(onPositionUpdate, onError,
-      {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
+      {timeout: 30000, enableHighAccuracy: true});
     compassWatchId = navigator.compass.watchHeading(onCompassUpdate, onError, {frequency: 1000});
     
   },
@@ -121,11 +149,12 @@ var algorithm = {
             if (isAlmostAsLargeAsPrevious && isPreviousLargeEnough && isNotContra) {
               // one jump
               counter++;
+              $('#jump').text(counter + '跳');
               Toast.shortshow(String(++counter));
-              if (counter == task.rule) {
-                navigator.accelerometer.clearWatch(jumpWatchId);
-                // 开始请求，设置任务结束
-              }
+              // if (counter == task.rule) {
+              //   navigator.accelerometer.clearWatch(jumpWatchId);
+              //   // 开始请求，设置任务结束
+              // }
               mLastMatch = extType;
             }
             else {
