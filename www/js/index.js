@@ -55,6 +55,9 @@ var app = {
 	onDeviceReady: function() {
 		$(function() {
 			// app.receivedEvent('deviceready');
+			$('.exit').bind('click', function () {
+				navigator.app.exitApp();
+			});
 			try {
 				algorithm.jump();
 				algorithm.navigition({

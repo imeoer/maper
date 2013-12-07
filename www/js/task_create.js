@@ -66,5 +66,7 @@ var task_create = {
 		$('#content-create-game').click(function () {
 			task_create.showPanel('task');
 		});
+
+		$('#create').hide();
 	}
 };
