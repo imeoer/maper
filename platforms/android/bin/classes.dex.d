@@ -8,7 +8,6 @@
 /home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/devicemotion/AccelListener$1.class \
 /home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/toast/ToastPlugin$1.class \
 /home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/toast/ToastPlugin.class \
-/home/imeoer/maper/platforms/android/bin/classes/R.java.d \
 /home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R$attr.class \
 /home/imeoer/maper/platforms/android/bin/classes/com/example/maper/MyService.class \
 /home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R$drawable.class \

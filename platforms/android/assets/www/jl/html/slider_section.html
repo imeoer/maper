@@ -1,0 +1,39 @@
+<section id="slider_section" >
+    <header>
+        <nav class="left">
+            <a href="#" data-icon="previous" data-target="back">Back</a>
+        </nav>
+        <h1 class="title">slider</h1>
+        <nav class="right">
+            <a href="#" class="button" data-icon="previous" id="slider_prev"></a>
+            <a href="#" class="button" data-icon="next" id="slider_next"></a>
+        </nav>
+    </header>
+    <article class="active">
+        <div id="slider_test">
+            <div>
+                <div style="text-align: center"><img src="image/1.jpg"></div>
+                <div style="text-align: center"><img src="image/2.jpg"></div>
+                <div style="text-align: center"><img src="image/3.jpg"></div>
+                <div style="text-align: center"><img src="image/4.jpg"></div>
+            </div>
+        </div>
+    </article>
+    <script type="text/javascript">
+        var slider;
+        $('#slider_section article').on('articleshow',function(){
+            slider = new J.Slider({
+                selector : '#slider_test',
+                noDots : false,
+                onBeforeSlide : function(){
+                    return true;
+                },
+                onAfterSlide : function(i){
+                    //alert(i);
+                }
+            });
+        });
+        $('#slider_prev').tap(function(){slider.prev()});
+        $('#slider_next').tap(function(){slider.next()});
+    </script>
+</section>

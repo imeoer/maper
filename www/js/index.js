@@ -1,11 +1,20 @@
 var app = {
 
 	initialize: function() {
+		$.mobile.loadingMessage = false;
 		this.bindEvents();
 	},
 
 	bindEvents: function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
+
+		$(document).on('swipeleft', function (event) {
+			$('#main').addClass('animation');
+		}).on('swiperight', function (event) {
+			$('#main').removeClass('animation');
+		});
+
+		$('#logo').addClass('animation1');
 	},
 
 	onDeviceReady: function() {
@@ -129,7 +138,7 @@ var app = {
 		var mScale = [0, 0];
 		mScale[0] = - (h * 0.5 * (1.0 / (STANDARD_GRAVITY * 2)));
 		mScale[1] = - (h * 0.5 * (1.0 / (MAGNETIC_FIELD_EARTH_MAX)));
-		var mLimit = 10.00; // 1.97  2.96  4.44  6.66  10.00  15.00  22.50  33.75  50.62
+		var mLimit = 4.44; // 1.97  2.96  4.44  6.66  10.00  15.00  22.50  33.75  50.62
 		var mLastValues = [0, 0, 0, 0, 0, 0];
 		var mLastDirections = [0, 0, 0, 0, 0, 0];
 		var mLastDiff = [0, 0, 0, 0, 0, 0];
