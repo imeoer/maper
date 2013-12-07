@@ -4,7 +4,7 @@
 
 //var deviceid = device.uuid;
 
-var deviceid ;
+var deviceid = 12345678;
 
 var baseUri = "http://10.10.0.103:3000/v1/";
 
@@ -117,7 +117,7 @@ var mapapi = {
 	    	});
 	},
 
-	getTasks : function(username, task, callback){
+	getTasks : function(callback){
 		$.ajax({
 	        type:'GET',
 	        //url: baseUri + username + "/" + task,

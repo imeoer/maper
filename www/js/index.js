@@ -17,19 +17,17 @@ var app = {
 			$('#content').removeClass('animation');
 			$('#task').removeClass('animation');
 			$('#navi').removeClass('animation');
-			user.get_profile();
-			user.get_user_tasks();
 		});
 		$('#logo').addClass('animation1');
 
 		$('#first-btn').click(function () {
 			$('#main').hide();
-			$('#create-tasks').hide();
+			$('#create').hide();
 			$('#main1').show();
 			$('#content').show();
 			$('#task').show();
 			$('#navi').show();
-			$('#join-tasks').show();
+			$('#join').show();
 		});
 
 		//global
@@ -43,6 +41,18 @@ var app = {
 		$('body').click(function () {
 			$('body').removeClass('input-adjust');
 		});
+		$(document).ready(function () {
+			user.get_profile();
+			user.get_user_tasks();
+			$('#create-switch').bind('click', function () {
+				$('#create').show();
+				$('#join').hide();
+			});
+			$('#join-switch').bind('click', function () {
+				$('#join').show();
+				$('#create').hide();
+			});
+		});
 	},
 
 	onDeviceReady: function() {
@@ -50,11 +60,11 @@ var app = {
 			// app.receivedEvent('deviceready');
 			try {
 				// app.run();
-				algorithm.jump();
-				algorithm.navigition({
-					latitude: 39.958046,
-					longitude: 116.358368
-				});
+				//algorithm.jump();
+				//algorithm.navigition({
+				//	latitude: 39.958046,
+				//	longitude: 116.358368
+				//});
 				// var onPositionUpdate = function (postion) {
 				// 	alert(JSON.stringify(postion));
 				// };
