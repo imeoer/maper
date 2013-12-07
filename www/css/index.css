@@ -53,7 +53,7 @@ body {
 	top: 0;
 }
 
-#app, #main, #main1, #content, #task, #navi, #progress {
+#app, #main, #main1, #content, #task, #navi, #progress ,#cameraTask {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -76,7 +76,7 @@ body {
 	width: 500px;
 }
 
-#content, #task, #navi, #progress {
+#content, #task, #navi, #progress , ,#cameraTask{
 	display: none;
 	background-color: #fff;
 	z-index: 1;
@@ -94,6 +94,10 @@ body {
 
 #progress {
 	z-index: 4;
+}
+
+#cameraTask {
+	z-index: 5;
 }
 
 /* header */
@@ -277,10 +281,10 @@ body {
 }
 
 /* task */
-#task {
+#task , ,#cameraTask{
 	padding-top: 60px;
 }
-#task .head {
+#task,#cameraTask .head {
 	padding: 10px;
 	padding-left: 30px;
 	padding-top: 15px;
@@ -289,7 +293,7 @@ body {
 	font-weight: bold;
 	margin-bottom: 36px;
 }
-#task .input {
+#task,#cameraTask .input {
 	margin: 0 auto;
 	margin: 32px 60px;
 	width: 550px;
@@ -307,30 +311,30 @@ body {
 	margin-left: 46px;
 }*/
 
-#task .button {
+#task,#cameraTask .button {
 	margin-top: 100px;
 	color: #fff;
 }
 
-#task .task-create-add {
+#task,#cameraTask .task-create-add {
 	margin-left: 60px;
 	width: 230px;
 	margin-right: 0px;
 	float: left;
 	background-color: #227aff;
 }
-#task .task-create-add:active {
+#task,#cameraTask .task-create-add:active {
 	background-color: #579aff;
 }
 
-#task .task-create-finish {
+#task,#cameraTask .task-create-finish {
 	width: 230px;
 	margin-right: 0px;
 	margin-left: 46px;
 	float: left;
 	background-color: #ff5400;
 }
-#task .task-create-finish:active {
+#task,#cameraTask .task-create-finish:active {
 	background-color: #ff7734;
 }
 
@@ -435,4 +439,15 @@ body {
 	background: url(../img/edit.png);
 	margin-right: 70px;
 	margin-top: 4px;
+}
+
+.img-camera {
+	background: url(../img/camera.png);
+	background-repeat: no-repeat;
+	padding: 30px 30px;
+	margin: 0px 60px;
+}
+
+#cameraTask {
+	background: url(../img/main_bg.png);
 }
