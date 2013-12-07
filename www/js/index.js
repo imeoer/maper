@@ -6,31 +6,22 @@ var app = {
 	},
 
 	bindEvents: function() {
+
+		var that = this;
+
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 
 		// first
 		$(document).on('swiperight', function (event) {
-			$('#content').addClass('animation');
-			$('#task').addClass('animation');
-			$('#navi').addClass('animation');
-			$('#progress').addClass('animation');
+			$('.panel').addClass('animation');
 		}).on('swipeleft', function (event) {
-			$('#content').removeClass('animation');
-			$('#task').removeClass('animation');
-			$('#navi').removeClass('animation');
-			$('#progress').removeClass('animation');
+			$('.panel').removeClass('animation');
 		});
 		$('#logo').addClass('animation1');
 
 		$('#first-btn').click(function () {
-			$('#main').hide();
-			$('#create').hide();
 			$('#main1').show();
-			$('#content').show();
-			$('#task').show();
-			$('#navi').show();
-			$('#progress').show();
-			$('#join').show();
+			task_create.showPanel('progress');
 		});
 
 		//global

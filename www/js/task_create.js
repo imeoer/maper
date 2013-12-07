@@ -1,11 +1,24 @@
 var task_create = {
+	showPanel: function (type) {
+		$('.panel').hide();
+		if (type == 'first') {
+			$('#main').removeClass('animation');
+			$('#main').show();
+		} else if (type == 'progress') {
+			$('#progress').removeClass('animation');
+			$('#progress').show();
+		} else if (type == 'navi') {
+			$('#navi').removeClass('animation');
+			$('#navi').show();
+		} else if (type == 'task') {
+			$('#task').removeClass('animation');
+			$('#task').show();
+		} else if (type == 'game') {
+			$('#content').removeClass('animation');
+			$('#content').show();
+		}
+	},
 	init: function () {
-		$('#main').hide();
-		$('#main1').show();
-		$('#content').hide();
-		$('#task').hide();
-		$('#navi').hide();
-		$('#progress').show();
 
 		$('.task-time').mobiscroll().time({
 			theme: 'android-ics light',
@@ -35,9 +48,11 @@ var task_create = {
 		});
 
 		$('.task-create-finish').click(function () {
-			$('#content').addClass('animation');
-			$('#task').addClass('animation');
-			$('#navi').addClass('animation');
+
+		});
+
+		$('#main1 .navi').click(function () {
+			task_create.showPanel('navi');
 		});
 	}
 };
