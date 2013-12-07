@@ -2,7 +2,9 @@
 ** map js api
 ***/
 
-var deviceid = device.uuid;
+//var deviceid = device.uuid;
+
+var deviceid ;
 
 var baseUri = "http://10.10.0.103:3000/v1/";
 
@@ -29,7 +31,7 @@ var succCode = {
 var header = "";
 
 var mapapi = {
-	getUserName : function(){
+	getUserName : function(callback){
 		$.ajax({
         type:'POST',
         url: baseUri+'token',
@@ -41,9 +43,9 @@ var mapapi = {
         success: function(data, textStatus, HRX){
             if (data){
             	if (data.error){
-            		errorHandler("900", data.error);
+            		callback(data.error, null);
             	}else {
-            		succHandler("201", data, HRX);
+            		callback(null, data);
             	}
             }else {
             	errorHandler("102");
@@ -55,8 +57,7 @@ var mapapi = {
     	});
 	},
 
-	regester : function(username){
-		console.log(username+":"+deviceid + ":"+baseUri+'users/register');
+	regester : function(username, callback){
 		$.ajax({
 	        type:"POST",
 	        url: baseUri+'users/register',
@@ -68,10 +69,10 @@ var mapapi = {
 	        success: function(data, textStatus, HRX){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("202", data, HRX);
-	            	}
+            			callback(data.error, null);
+            		}else {
+            			callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("102");
 	            }
@@ -82,7 +83,7 @@ var mapapi = {
 	    	});
 	},
 	//key Authorization value "bearer uuid"
-	createGame : function(gameName, description, reward, username){
+	createGame : function(gameName, description, reward, username, callback){
 		var param = {"game_name" : gameName,
 					
 					"description": description,
@@ -102,10 +103,10 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("203", data);
-	            	}
+            			callback(data.error, null);
+            		}else {
+            			callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("103");
 	            }
@@ -116,7 +117,7 @@ var mapapi = {
 	    	});
 	},
 
-	getTasks : function(username, task){
+	getTasks : function(username, task, callback){
 		$.ajax({
 	        type:'GET',
 	        //url: baseUri + username + "/" + task,
@@ -132,10 +133,10 @@ var mapapi = {
 	        success: function(data){//{'create':[], 'join':[]}
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("204", data);
-	            	}
+            			callback(data.error, null);
+            		}else {
+            			callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("104");
 	            }
@@ -146,7 +147,7 @@ var mapapi = {
 	    	});
 	},
 
-	createTask : function(game_name, task_name, description, reward, point, rule, type, end_time){
+	createTask : function(game_name, task_name, description, reward, point, rule, type, end_time, callback){
 		var params = {
 			"game_name":game_name,
 			"task_name":task_name,
@@ -171,10 +172,10 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("205", data);
-	            	}
+            			callback(data.error, null);
+            		}else {
+            			callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("105");
 	            }
@@ -185,7 +186,7 @@ var mapapi = {
 	    	});
 	},
 
-	finishTask : function(task_name){
+	finishTask : function(task_name, callback){
 		$.ajax({
 	        type:'PUT',
 	        url: baseUri+'tasks/' + task_name,
@@ -200,10 +201,10 @@ var mapapi = {
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
-	            		errorHandler("900", data.error);
-	            	}else {
-	            		succHandler("206", data);
-	            	}
+            			callback(data.error, null);
+            		}else {
+            			callback(null, data);
+            		}
 	            }else {
 	            	errorHandler("106");
 	            }
@@ -232,6 +233,7 @@ function succHandler(code, data, msg){
 			break;
 		default:
 			break;
+		return;
 	}
 }
 
@@ -251,5 +253,6 @@ function errorHandler(code, msg){
 			break;
 		default:
 			break;
+		return;
 	}
 }
