@@ -26,6 +26,8 @@ var succCode = {
 	"900": "Other"
 };
 
+var header = "";
+
 var mapapi = {
 	getUserName : function(){
 		$.ajax({
@@ -36,12 +38,12 @@ var mapapi = {
         timeout: 5000,
         cache: true,
         async: true,
-        success: function(data){
+        success: function(data, textStatus, HRX){
             if (data){
             	if (data.error){
             		errorHandler("900", data.error);
             	}else {
-            		succHandler("201", data);
+            		succHandler("201", data, HRX);
             	}
             }else {
             	errorHandler("102");
@@ -68,7 +70,7 @@ var mapapi = {
 	            	if (data.error){
 	            		errorHandler("900", data.error);
 	            	}else {
-	            		succHandler("202", data);
+	            		succHandler("202", data, HRX);
 	            	}
 	            }else {
 	            	errorHandler("102");
@@ -79,10 +81,10 @@ var mapapi = {
 	    		}
 	    	});
 	},
-
+	//key Authorization value "bearer uuid"
 	createGame : function(gameName, description, reward, username){
 		var param = {"game_name" : gameName,
-					"task_name" : task_name,
+					
 					"description": description,
 					"reward": reward,
 					"username": username};
@@ -94,6 +96,9 @@ var mapapi = {
 	        timeout: 5000,
 	        cache: true,
 	        async: true,
+	        headers: {
+	        	"Authorization" : "bearer " + deviceid
+	        },
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
@@ -120,6 +125,9 @@ var mapapi = {
 	        timeout: 5000,
 	        cache: true,
 	        async: true,
+	        headers: {
+	        	"Authorization" : "bearer " + deviceid
+	        },
 	        success: function(data){//{'create':[], 'join':[]}
 	            if (data){
 	            	if (data.error){
@@ -156,6 +164,9 @@ var mapapi = {
 	        timeout: 5000,
 	        cache: true,
 	        async: true,
+	        headers: {
+	        	"Authorization" : "bearer " + deviceid
+	        },
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
@@ -182,6 +193,9 @@ var mapapi = {
 	        timeout: 5000,
 	        cache: true,
 	        async: true,
+	        headers: {
+	        	"Authorization" : "bearer " + deviceid
+	        },
 	        success: function(data){
 	            if (data){
 	            	if (data.error){
