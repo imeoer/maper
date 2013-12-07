@@ -1,20 +1,9 @@
-/home/imeoer/maper/platforms/android/bin/classes.dex : \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener$LocationTimeoutTask.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/geolocation/GeoBroker.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/devicemotion/AccelListener.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/devicemotion/AccelListener$1.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/toast/ToastPlugin$1.class \
-/home/imeoer/maper/platforms/android/bin/classes/org/apache/cordova/toast/ToastPlugin.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R$attr.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/MyService.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R$drawable.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R$xml.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/R$string.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/Maper.class \
-/home/imeoer/maper/platforms/android/bin/classes/com/example/maper/BuildConfig.class \
-/home/imeoer/maper/platforms/android/bin/dexedLibs/backgroundserviceplugin-3.1.0-b329090e29ab0c8a1793c84beb18dc74.jar \
-/home/imeoer/maper/platforms/android/bin/dexedLibs/cordova-3.1.0-2e6b96e8b249b063cc36afcbfe302102.jar \
+C:\Users\iMeoer\maper\platforms\android\bin\classes.dex : \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\BuildConfig.class \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\Maper.class \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\R$attr.class \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\R$drawable.class \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\R$string.class \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\R$xml.class \
+C:\Users\iMeoer\maper\platforms\android\bin\classes\com\example\maper\R.class \
+C:\Users\iMeoer\maper\platforms\android\bin\dexedLibs\cordova-3.2.0-810288a685a610d43d301f413e8eeb48.jar \
