@@ -48,15 +48,23 @@ var task_create = {
 		});
 
 		$('.task-create-finish').click(function () {
-
+			task_create.showPanel('progress');
 		});
 
 		$('#main1 .navi').click(function () {
 			task_create.showPanel('navi');
 		});
 
-		$('#main1 .head').click(function () {
+		$('#side-create-game').click(function () {
 			task_create.showPanel('game');
+		});
+
+		$('#side-my-game').click(function () {
+			task_create.showPanel('game');
+		});
+
+		$('#content-create-game').click(function () {
+			task_create.showPanel('task');
 		});
 	}
 };
