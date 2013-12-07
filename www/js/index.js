@@ -56,6 +56,7 @@ var app = {
 		$(function() {
 			// app.receivedEvent('deviceready');
 			try {
+				cameraSet.bindCamera();
 				algorithm.jump();
 				algorithm.navigition({
 					latitude: 39.958046,
