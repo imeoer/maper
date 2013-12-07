@@ -14,6 +14,8 @@ var app = {
 		// first
 		$(document).on('swiperight', function (event) {
 			$('.panel').addClass('animation');
+			user.get_profile();
+			user.get_user_tasks();
 		}).on('swipeleft', function (event) {
 			$('.panel').removeClass('animation');
 		});
@@ -37,24 +39,48 @@ var app = {
 		$('body').click(function () {
 			$('body').removeClass('input-adjust');
 		});
-		task_create.init();
+
+		// 我的游戏和我创建游戏切换
+		$('#create-switch').bind('click', function () {
+			$('#create').show();
+			$('#join').hide();
+			if ($('#create-tasks').children().length > 0) {
+				task_create.showPanel('progress');
+			} else {
+				task_create.showPanel('game');
+			}
+			return false;
+		});
+		$('#join-switch').bind('click', function () {
+			$('#join').show();
+			$('#create').hide();
+			return false;
+		});
+
+		// 创建游戏
+		$('#content-create-game').bind('click', function () {
+			alert('dadsdasd');
+			game.create_game();
+			return false;
+		});
+
+		//创建任务
+		$('.task-create-add').bind('click', function () {
+			task.add_task();
+			$('#task').show();
+		});
+
 		$(document).ready(function () {
 			user.get_profile();
 			user.get_user_tasks();
-			$('#create-switch').bind('click', function () {
-				$('#create').show();
-				$('#join').hide();
-			});
-			$('#join-switch').bind('click', function () {
-				$('#join').show();
-				$('#create').hide();
-			});
 		});
+		task_create.init();
 	},
 
 	onDeviceReady: function() {
 		$(function() {
 			// app.receivedEvent('deviceready');
+			// 退去应用
 			$('.exit').bind('click', function () {
 				navigator.app.exitApp();
 			});
