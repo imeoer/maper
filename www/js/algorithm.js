@@ -44,8 +44,8 @@ var algorithm = {
       return d;
     };
     var onPositionUpdate = function (position) {
-      // alert(JSON.stringify(position));
-      algorithm.runGoogleMap(position.coords.latitude, position.coords.longitude);
+      alert(JSON.stringify(position));
+      // algorithm.runGoogleMap(position.coords.latitude, position.coords.longitude);
       calculate_distance(position);
     };
     var calculate_angle = function () {
