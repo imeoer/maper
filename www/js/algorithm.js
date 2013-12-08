@@ -30,13 +30,13 @@ var algorithm = {
 
         $('#compass-text').text((d * 1000).toFixed(4) + '米');
 
-        if (d === 0) { // 到达指定地点
-          navigator.geolocation.clearWatch(locationWatchId);
-          navigator.compass.clearWatch(compassWatchId);
-          if (task.type === 1) {
-            that.jump(task);
-          }
-        }
+        // if (d === 0) { // 到达指定地点
+        //   navigator.geolocation.clearWatch(locationWatchId);
+        //   navigator.compass.clearWatch(compassWatchId);
+        //   if (task.type === 1) {
+        //     that.jump(task);
+        //   }
+        // }
 
       } catch (err) {
         alert(err.message);
@@ -163,15 +163,15 @@ var algorithm = {
               counter++;
               $('#jump').text(counter + '步');
               Toast.shortshow(String(counter));
-              if (counter === 10) {
-                navigator.accelerometer.clearWatach(jumpWatchId);
-                mapapi.finishTask(task.task_name, function (err, data) {
-                  if (data) {
-                    alert('任务完成');
-                  }
-                  return;
-                });
-              }
+              // if (counter === 10) {
+              //   navigator.accelerometer.clearWatach(jumpWatchId);
+              //   mapapi.finishTask(task.task_name, function (err, data) {
+              //     if (data) {
+              //       alert('任务完成');
+              //     }
+              //     return;
+              //   });
+              // }
               mLastMatch = extType;
             }
             else {

@@ -138,7 +138,7 @@ var user = {
                 if (!data.join.join_tasks[index].finished) {
                     $('.nav').bind('click', function () {
                         task_create.showPanel('navi');
-                        task.navi(data.join.join_tasks[index]);
+                        // task.navi(data.join.join_tasks[index]);
                     });
                 }
             });

@@ -94,8 +94,7 @@ var app = {
 			try {
 				algorithm.jump();
 				algorithm.navigition({
-					latitude: 39.958046,
-					longitude: 116.358368
+					point: [39.958046, 116.358368]
 				});
 				cameraSet.bindCamera();
 			}
