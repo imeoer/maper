@@ -34,6 +34,7 @@ var algorithm = {
     };
     var onPositionUpdate = function (position) {
       // alert(JSON.stringify(position));
+      // algorithm.runGoogleMap(position.coords.latitude, position.coords.longitude);
       calculate_distance(position);
     };
     var calculate_angle = function () {
@@ -177,5 +178,58 @@ var algorithm = {
       frequency: 100
     });
     Toast.shortshow('Step counter start...');
-  }
+  },
+  // 谷歌地图
+  // runGoogleMap: function(latitude, longitude) {
+  //   Toast.shortshow('Google map request...');
+  //   var origin = new google.maps.LatLng(latitude, longitude);
+  //   var mapElem = $('#map')[0];
+  //   var map = new google.maps.Map(mapElem, {
+  //     center: origin
+  //   });
+
+  //   var request = {
+  //     location: origin,
+  //     radius: 1000
+  //     // types: ['bus_station']
+  //   };
+
+  //   infowindow = new google.maps.InfoWindow();
+  //   var service = new google.maps.places.PlacesService(map);
+
+  //   var getPlaceDetail = function(reference) {
+
+  //     service.getDetails({
+  //       reference: reference
+  //     }, function(place, status) {
+  //       if (status == google.maps.places.PlacesServiceStatus.OK) {
+  //         console.log(JSON.stringify(place));
+  //         Toast.shortshow('Google place detail finish');
+  //       }
+  //     });
+      
+  //   };
+
+  //   var querySuccess = function(results, status) {
+  //     if (status == google.maps.places.PlacesServiceStatus.OK) {
+  //       var placeAry = [];
+  //       if (placeAry[0]) {
+  //         $('#navi-info').val('最近位置：' + placeAry[0].name);
+  //       }
+  //       // for (var i = 0; i < results.length; i++) {
+  //       //   var place = results[i];
+  //       //   placeAry.push(place.name);
+  //       // }
+  //       // if (placeAry.length) {
+  //       //   $('.received').text(placeAry.join(', '));
+  //       //   Toast.shortshow('Google request finish');
+  //       //   getPlaceDetail(results[0].reference);
+  //       // } else {
+  //       //   Toast.shortshow('Google map no data');
+  //       // }
+  //     }
+  //   };
+
+  //   service.nearbySearch(request, querySuccess);
+  // }
 };
