@@ -48,42 +48,42 @@ var data = {
                 "description": "起床",
                 "point": [33, 111],
                 "end_time": "8:00",
-                "finised": false
+                "finised": true
             },
             {
                 "task_name": "9点前跑2公里",
                 "description": "跑步",
                 "point": [33, 123],
                 "end_time": "9:30",
-                "finised": false
+                "finised": true
             },
             {
                 "task_name": "喝杯牛奶",
                 "description": "牛奶",
                 "point": [33, 100],
                 "end_time": "10:04",
-                "finised": false
+                "finised": true
             },
             {
                 "task_name": "到家拐弯处吃早餐",
                 "description": "早餐",
                 "point": [33, 111],
                 "end_time": "11:04",
-                "finised": false
+                "finised": true
             },
             {
                 "task_name": "骑车去雕刻时光",
                 "description": "骑车",
                 "point": [33, 111],
                 "end_time": "12:04",
-                "finised": false
+                "finised": true
             },
             {
                 "task_name": "去向店主要礼物",
                 "description": "骑车",
                 "point": [33, 111],
                 "end_time": "14:04",
-                "finised": false
+                "finised": true
             },
             {
                 "task_name": "出店，向后转身",
