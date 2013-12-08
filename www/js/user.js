@@ -7,34 +7,6 @@ var data = {
             "username": "测试用户"
         },
         "create_tasks": [
-            {
-                "task_name": "hello world",
-                "description": "test",
-                "point": [33, 111],
-                "end_time": "10:04",
-                "finished": false
-            },
-            {
-                "task_name": "hello world",
-                "description": "test",
-                "point": [33, 111],
-                "end_time": "10:04",
-                "finished": false
-            },
-            {
-                "task_name": "hello world",
-                "description": "test",
-                "point": [33, 111],
-                "end_time": "10:04",
-                "finished": false
-            },
-            {
-                "task_name": "hello world",
-                "description": "test",
-                "point": [33, 111],
-                "end_time": "10:04",
-                "finished": false
-            }
         ]
     },
     "join": {

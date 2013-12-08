@@ -8,7 +8,7 @@ var app = {
 	bindEvents: function() {
 
 		var that = this;
-
+		var create_tasks = {player: {username: '', progress: '0%'}, create_tasks: []};
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 
 		// first
@@ -60,21 +60,40 @@ var app = {
 		// 创建游戏
 		$('#content-create-game').bind('click', function () {
 			// alert('dadsdasd');
-			game.create_game();
-			return false;
+			game.create_game(function (invite_user, reward) {
+				create_tasks.player.username = invite_user;
+			});
+			task_create.showPanel('task');
 		});
 
 		//创建任务
 		$('.task-create-add').bind('click', function () {
-			var rst = task.add_task();
-			if (rst) {
-				task_create.showPanel('task');
-			}
+			task.add_task(function (task_name, description, point, type, end_time) {
+				var tmp = {task_name: task_name, description: description,
+						   point: point, type: type, end_time: end_time};
+				console.log(tmp);
+				create_tasks.create_tasks.push(tmp);
+				console.log(create_tasks);
+			});
 			return false;
 		});
 
 		$('.task-create-finish').bind('click', function () {
+			var html = '';
+			for (var i = 0; i < create_tasks.create_tasks.length; i ++) {
+				html += '<li class="createtask"><div>·</div>';
+            	html += create_tasks.create_tasks[i].task_name + '</li>';
+			}
+			$('#create-tasks').html(html);
+			$('.createtask').each(function (index, value) {
+	            $(value).bind('click', function () {
+	                $('.createtask').removeClass('select');
+	                $(this).addClass('select');
+	                task.get_task_info(create_tasks.create_tasks[index]);
+	            });
+	        });
 			task_create.showPanel('progress');
+			return false;
 		});
 
 		$(document).ready(function () {
