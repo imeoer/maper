@@ -28,7 +28,7 @@ var task = {
 			if (data) {
 				return true;
 			} else {
-				alert(err);
+				// alert(err);
 				return false;
 			}
 		});

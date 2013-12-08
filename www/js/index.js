@@ -14,8 +14,8 @@ var app = {
 		// first
 		$(document).on('swiperight', function (event) {
 			$('.panel').addClass('animation');
-			user.get_profile();
-			user.get_user_tasks();
+			// user.get_profile();
+			// user.get_user_tasks();
 		}).on('swipeleft', function (event) {
 			$('.panel').removeClass('animation');
 		});
@@ -59,7 +59,7 @@ var app = {
 
 		// 创建游戏
 		$('#content-create-game').bind('click', function () {
-			alert('dadsdasd');
+			// alert('dadsdasd');
 			game.create_game();
 			return false;
 		});

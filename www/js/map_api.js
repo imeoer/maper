@@ -40,7 +40,7 @@ var mapapi = {
         timeout: 50000,
         async: true,
         success: function(data, textStatus, HRX){
-            if (data){
+            if (data) {
             	if (data.error){
             		return callback(data.error, null);
             	}else {
