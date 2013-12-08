@@ -78,8 +78,8 @@ var app = {
 		});
 
 		$(document).ready(function () {
-			// user.get_profile();
-			// user.get_user_tasks();
+			user.get_profile();
+			user.get_user_tasks();
 		});
 		task_create.init();
 	},
