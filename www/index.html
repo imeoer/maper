@@ -34,23 +34,23 @@
 			<div id="task" class="done panel">
 				<div class="head">设置任务</div>
 				<img class="camera-img" src="img/camera.png"/>
-				<input class="input task-name" placeholder="任务名称"></input>
-				<input class="input task-time picker" placeholder="截止时间"></input>
-				<input class="input task-gps" placeholder="位置经纬度（可选）"></input>
-				<select class="task-type-selector">
+				<input class="input task-name" placeholder="任务名称" name="task_name"></input>
+				<input class="input task-time picker" placeholder="截止时间" name="end_time"></input>
+				<input class="input task-gps" placeholder="位置经纬度（可选）" name="point"></input>
+				<select class="task-type-selector" name="type">
 					<option value="0">拍照证明</option>
 					<option value="1">跑跳10次</option>
 				</select>
 				<!-- <input class="input task-type" placeholder="选择类型"></input> -->
-				<input class="input task-description" placeholder="详细描述（可选）"></input>
+				<input class="input task-description" placeholder="详细描述（可选）" name="description"></input>
 				<div class="button task-create-add">继续添加</div>
 				<div class="button task-create-finish">完成</div>
 			</div>
 
 			<div id="content" class="done panel">
 				<div class="head">创建游戏</div>
-				<input class="input user-name" placeholder="邀请玩家账户名"></input>
-				<input class="input user-gift" placeholder="我承诺的奖励"></input>
+				<input class="input user-name" placeholder="邀请玩家账户名" name="invite_user"></input>
+				<input class="input user-gift" placeholder="我承诺的奖励" name="reward"></input>
 				<div class="button user-create" id="content-create-game">创建</div>
 			</div>
 
@@ -92,6 +92,7 @@
 		<script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/map_api.js"></script>
         <script type="text/javascript" src="js/game_task.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
         <script type="text/javascript" src="js/user.js"></script>
 	</body>
 </html>

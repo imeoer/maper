@@ -38,7 +38,6 @@ var mapapi = {
         dataType:'json',
         data: {'uuid': deviceid},
         timeout: 50000,
-        cache: true,
         async: true,
         success: function(data, textStatus, HRX){
             if (data){
@@ -48,11 +47,11 @@ var mapapi = {
             		return callback(null, data);
             	}
             }else {
-            	errorHandler("102");
+            	return callback("102", null);
             }
         },
     	error: function(err){
-    			errorHandler("102");
+    			return callback("102", null);
     		}
     	});
 	},
@@ -64,7 +63,6 @@ var mapapi = {
 	        dataType:'json',
 	        data: {"uuid": deviceid, "username": username},
 	        timeout: 50000,
-	        cache: true,
 	        async: true,
 	        success: function(data, textStatus, HRX){
 	            if (data){
@@ -74,28 +72,24 @@ var mapapi = {
             			return callback(null, data);
             		}
 	            }else {
-	            	errorHandler("102");
+	            	return callback("102", null);
 	            }
 	        },
 	    	error: function(err, ajaxOptions, thrownError){
-	    			errorHandler("102");
+	    			return callback("102", null);
 	    		}
 	    	});
 	},
 	//key Authorization value "bearer uuid"
-	createGame : function(gameName, description, reward, username, callback){
-		var param = {"game_name" : gameName,
-					
-					"description": description,
-					"reward": reward,
-					"username": username};
+	createGame : function(reward, invite_user_name, callback){
+		var param = {"reward": reward,
+					 "invite_user_name": invite_user_name};
 		$.ajax({
 	        type:'POST',
 	        url: baseUri+'games',
 	        dataType:'json',
 	        data: param,
 	        timeout: 5000,
-	        cache: true,
 	        async: true,
 	        headers: {
 	        	"Authorization" : "bearer " + deviceid
@@ -108,11 +102,11 @@ var mapapi = {
             			return callback(null, data);
             		}
 	            }else {
-	            	errorHandler("103");
+	            	return callback("103", null);
 	            }
 	        },
 	    	error: function(err){
-	    			errorHandler("102");
+	    			return callback("102", null);
 	    		}
 	    	});
 	},
@@ -125,7 +119,6 @@ var mapapi = {
 	        dataType:'json',
 	        data: "",
 	        timeout: 5000,
-	        cache: true,
 	        async: true,
 	        headers: {
 	        	"Authorization" : "bearer " + deviceid
@@ -138,23 +131,20 @@ var mapapi = {
             			return callback(null, data);
             		}
 	            }else {
-	            	errorHandler("104");
+	            	return callback("104", null);
 	            }
 	        },
 	    	error: function(err){
-	    			errorHandler("102");
+	    			return callback("102", null);
 	    		}
 	    	});
 	},
 
-	createTask : function(game_name, task_name, description, reward, point, rule, type, end_time, callback){
+	createTask : function(task_name, description, point, type, end_time, callback){
 		var params = {
-			"game_name":game_name,
 			"task_name":task_name,
 			"description":description,
-			"reward":reward,
 			"point":point,
-			"rule":rule,
 			"type":type,
 			"end_time":end_time
 		};
@@ -164,7 +154,6 @@ var mapapi = {
 	        dataType:'json',
 	        data: params,
 	        timeout: 5000,
-	        cache: true,
 	        async: true,
 	        headers: {
 	        	"Authorization" : "bearer " + deviceid
@@ -177,11 +166,11 @@ var mapapi = {
             			return callback(null, data);
             		}
 	            }else {
-	            	errorHandler("105");
+	            	return callback("105", null);
 	            }
 	        },
 	    	error: function(err){
-	    			errorHandler("102");
+	    			return callback("102", null);
 	    		}
 	    	});
 	},
@@ -193,7 +182,6 @@ var mapapi = {
 	        dataType:'json',
 	        data: "",
 	        timeout: 5000,
-	        cache: true,
 	        async: true,
 	        headers: {
 	        	"Authorization" : "bearer " + deviceid
@@ -206,11 +194,11 @@ var mapapi = {
             			return callback(null, data);
             		}
 	            }else {
-	            	errorHandler("106");
+	            	return callback("106", null);
 	            }
 	        },
 	    	error: function(err){
-	    			errorHandler("102");
+	    			return callback("102", null);
 	    		}
 	    	});
 	}

@@ -8,10 +8,11 @@ var algorithm = {
     var compassWatchId;
     var destinationBearing;
     var currentHeading;
+    var that = this;
     var calculate_distance = function (position) {
       try {
-        var dLat = (task.latitude - position.coords.latitude).toRad();
-        var dLon = (task.longitude - position.coords.longitude).toRad();
+        var dLat = (task.point[0] - position.coords.latitude).toRad();
+        var dLon = (task.point[1] - position.coords.longitude).toRad();
         var lat1 = task.latitude.toRad();
         var lat2 = position.coords.latitude.toRad();
         // alert(task.longitude + ', ' + position.coords.longitude);
@@ -27,6 +28,15 @@ var algorithm = {
         destinationBearing = Math.atan2(y, x).toDeg();
 
         $('#compass-text').text((d * 1000).toFixed(4) + '米');
+
+        if (d === 0) { // 到达指定地点
+          navigator.geolocation.clearWatch(locationWatchId);
+          navigator.compass.clearWatch(compassWatchId);
+          if (task.type === 1) {
+            that.jump(task);
+          }
+        }
+
       } catch (err) {
         alert(err.message);
       }
@@ -151,11 +161,16 @@ var algorithm = {
               // one jump
               counter++;
               $('#jump').text(counter + '跳');
-              Toast.shortshow(String(++counter));
-              // if (counter == task.rule) {
-              //   navigator.accelerometer.clearWatch(jumpWatchId);
-              //   // 开始请求，设置任务结束
-              // }
+              Toast.shortshow(String(counter));
+              if (counter === 10) {
+                navigator.accelerometer.clearWatach(jumpWatchId);
+                mapapi.finishTask(task.task_name, function (err, data) {
+                  if (data) {
+                    alert('任务完成');
+                  }
+                  return;
+                });
+              }
               mLastMatch = extType;
             }
             else {
