@@ -10,11 +10,11 @@ var algorithm = {
     var currentHeading;
     var that = this;
     var calculate_distance = function (position) {
-      alert('oooo');
+      // alert('oooo');
       try {
         var dLat = (task.point[0] - position.coords.latitude).toRad();
         var dLon = (task.point[1] - position.coords.longitude).toRad();
-        var lat1 = task.latitude.toRad();
+        var lat1 = task.point[0].toRad();
         var lat2 = position.coords.latitude.toRad();
         // alert(task.longitude + ', ' + position.coords.longitude);
         var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -44,8 +44,8 @@ var algorithm = {
       return d;
     };
     var onPositionUpdate = function (position) {
-      alert(JSON.stringify(position));
-      // algorithm.runGoogleMap(position.coords.latitude, position.coords.longitude);
+      // alert(JSON.stringify(position));
+      algorithm.runGoogleMap(position.coords.latitude, position.coords.longitude);
       calculate_distance(position);
     };
     var calculate_angle = function () {
@@ -197,55 +197,62 @@ var algorithm = {
   },
   // 谷歌地图
   runGoogleMap: function(latitude, longitude) {
-    Toast.shortshow('Google map request...');
-    var origin = new google.maps.LatLng(latitude, longitude);
-    var mapElem = $('#map')[0];
-    var map = new google.maps.Map(mapElem, {
-      center: origin
-    });
-
-    var request = {
-      location: origin,
-      radius: 1000
-      // types: ['bus_station']
-    };
-
-    infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
-
-    var getPlaceDetail = function(reference) {
-
-      service.getDetails({
-        reference: reference
-      }, function(place, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          console.log(JSON.stringify(place));
-          Toast.shortshow('Google place detail finish');
-        }
+    try {
+      // Toast.shortshow('Google map request...');
+      var origin = new google.maps.LatLng(latitude, longitude);
+      var mapElem = $('#map')[0];
+      var map = new google.maps.Map(mapElem, {
+        center: origin
       });
-      
-    };
 
-    var querySuccess = function(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        var place = results[0];
-        if (place) {
-          $('#navi-info').val('最近位置：' + place.name);
+      var request = {
+        location: origin,
+        radius: 1000
+        // types: ['bus_station']
+      };
+
+      var infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(map);
+
+      var getPlaceDetail = function(reference) {
+
+        service.getDetails({
+          reference: reference
+        }, function(place, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            console.log(JSON.stringify(place));
+            // Toast.shortshow('Google place detail finish');
+          }
+        });
+        
+      };
+
+      var querySuccess = function(results, status) {
+        alert(status);
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          alert(JSON.stringify(results));
+          var place = results[0];
+          if (place) {
+            $('#navi-info').text('最近位置：' + place.name);
+          }
+          // for (var i = 0; i < results.length; i++) {
+          //   var place = results[i];
+          //   placeAry.push(place.name);
+          // }
+          // if (placeAry.length) {
+          //   $('.received').text(placeAry.join(', '));
+          //   Toast.shortshow('Google request finish');
+          //   getPlaceDetail(results[0].reference);
+          // } else {
+          //   Toast.shortshow('Google map no data');
+          // }
         }
-        // for (var i = 0; i < results.length; i++) {
-        //   var place = results[i];
-        //   placeAry.push(place.name);
-        // }
-        // if (placeAry.length) {
-        //   $('.received').text(placeAry.join(', '));
-        //   Toast.shortshow('Google request finish');
-        //   getPlaceDetail(results[0].reference);
-        // } else {
-        //   Toast.shortshow('Google map no data');
-        // }
-      }
-    };
+      };
 
-    service.nearbySearch(request, querySuccess);
+      service.nearbySearch(request, querySuccess);
+      alert('google start');
+    } catch (err) {
+      alert(err.message);
+    }
   }
 };

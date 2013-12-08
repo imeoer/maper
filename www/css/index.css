@@ -225,9 +225,10 @@ body {
 }
 
 #main1 .container .task-list li div {
+	margin-right: 17px;
 	color: #ff6600;
-	font-size: 50px;
-	margin-top: -12px;
+	font-size: 38px;
+	margin-top: 0px;
 	float: left;
 }
 
