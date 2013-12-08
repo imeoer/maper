@@ -8,7 +8,7 @@ var game = {
 			if (data) {
 				task_create.showPanel('task');
 			} else {
-				alert(err);
+				// alert(err);
 			}
 		});
 	}

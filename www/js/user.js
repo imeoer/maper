@@ -5,7 +5,7 @@ var user = {
 	get_profile: function () {
 		mapapi.getUserName(function (err, data) {
             if (err) {
-                alert(err);
+                // alert(err);
             } else {
                 $('.name').text(data.username);
             }   
@@ -15,7 +15,7 @@ var user = {
     get_user_tasks: function () {
         mapapi.getTasks(function (err, data) {
             if (err) {
-                alert(err);
+                // alert(err);
             } else {
                 if (data.create.create_tasks.length) {
                     $('.info').text('1个游戏，' + data.join.join_tasks.length + '个任务')
