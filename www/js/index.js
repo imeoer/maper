@@ -71,9 +71,9 @@ var app = {
 			task.add_task(function (task_name, description, point, type, end_time) {
 				var tmp = {task_name: task_name, description: description,
 						   point: point, type: type, end_time: end_time};
-				console.log(tmp);
-				create_tasks.create_tasks.push(tmp);
-				console.log(create_tasks);
+				if (task_name.length > 0) {
+					create_tasks.create_tasks.push(tmp);
+				}	
 			});
 			return false;
 		});
