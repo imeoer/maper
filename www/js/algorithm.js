@@ -84,7 +84,7 @@ var algorithm = {
     }
 
     locationWatchId = navigator.geolocation.watchPosition(onPositionUpdate, onError,
-      {timeout: 30000, enableHighAccuracy: true});
+      {timeout: 300000, enableHighAccuracy: true});
     compassWatchId = navigator.compass.watchHeading(onCompassUpdate, onError, {frequency: 1000});
     
   },
@@ -228,9 +228,9 @@ var algorithm = {
       };
 
       var querySuccess = function(results, status) {
-        alert(status);
+        // alert(status);
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          alert(JSON.stringify(results));
+          // alert(JSON.stringify(results));
           var place = results[0];
           if (place) {
             $('#navi-info').text('最近位置：' + place.name);
@@ -250,7 +250,7 @@ var algorithm = {
       };
 
       service.nearbySearch(request, querySuccess);
-      alert('google start');
+      // alert('google start');
     } catch (err) {
       alert(err.message);
     }
