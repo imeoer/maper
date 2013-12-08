@@ -62,7 +62,9 @@ var task_create = {
 		});
 
 		$('#side-my-game').click(function () {
-			task_create.showPanel('game');
+			if ($('#join-tasks').children().length == 0) {
+				task_create.showPanel('game');
+			}
 		});
 
 		$('#content-create-game').click(function () {
