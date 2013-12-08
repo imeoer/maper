@@ -66,8 +66,15 @@ var app = {
 
 		//创建任务
 		$('.task-create-add').bind('click', function () {
-			task.add_task();
-			$('#task').show();
+			var rst = task.add_task();
+			if (rst) {
+				task_create.showPanel('task');
+			}
+			return false;
+		});
+
+		$('.task-create-finish').bind('click', function () {
+			task_create.showPanel('progress');
 		});
 
 		$(document).ready(function () {
