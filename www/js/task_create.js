@@ -56,13 +56,13 @@ var task_create = {
 		});
 
 		$('#side-create-game').click(function () {
-			task_create.showPanel('game');
-		});
-
-		$('#side-my-game').click(function () {
 			if ($('#create-tasks').children().length == 0) {
 				task_create.showPanel('game');
 			}
+		});
+
+		$('#side-my-game').click(function () {
+			task_create.showPanel('game');
 		});
 
 		$('#content-create-game').click(function () {
